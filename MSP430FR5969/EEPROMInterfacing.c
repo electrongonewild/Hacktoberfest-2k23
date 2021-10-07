@@ -2,7 +2,7 @@
 // Code to interface MSP430FR5969 with EEPROM 
 //#########################################################################
 //  In this code MSP430FR5969 transmits data to 0x50 slave address. In this 
-//  case EEPROM.
+//  case slave is EEPROM.
 //
 //                                /|\  /|\
 //                		  10k  10k (Pull-up resistors)    
@@ -24,7 +24,7 @@
 #include <stdio.h>
 #include <math.h>
 
-#define     EEPROMAddress    0x50				 //set EEPROM address 
+#define     EEPROMAddress    0x50							// set EEPROM address 
 
 void ConfigWDT(void);
 void Delay_ms(unsigned int);
@@ -39,15 +39,15 @@ int read_val;
 
 int main(void)
 {
-	ConfigWDT();									//Configure Watchdog Timer
-        configureClocks();                						//Configure Clocks
-	InitI2C();									//Initialize I2C 
+	ConfigWDT();									// Configure Watchdog Timer
+        configureClocks();                						// Configure Clocks
+	InitI2C();									// Initialize I2C 
 
-	Address = 9;									//Address value to write on EEPROM
+	Address = 9;									// Address value to write on EEPROM
 
-	EEPROM_WriteByte(Address,'B');							//Write char on EEPROM Address
+	EEPROM_WriteByte(Address,'B');							// Write char on EEPROM Address
 	Delay_ms(1000);
-	read_val = EEPROM_ReadByte(Address);						//Read value from address to verify 
+	read_val = EEPROM_ReadByte(Address);						// Read value from address to verify 
 
 }
 
@@ -121,10 +121,10 @@ void EEPROM_WriteByte(int address, int dataWrite)
     UCB0TXBUF = dataWrite;
     while(!(UCB0IFG & UCTXIFG0));
     UCB0CTLW0 |= UCTXSTP;
-    while(UCB0CTLW0 & UCTXSTP);                 // wait for stop
+    while(UCB0CTLW0 & UCTXSTP);                // wait for stop
     UCB0STATW &= ~UCBBUSY;
 	
-    __delay_cycles(84000);                      // Delay for 3500us (3500*24)
+    __delay_cycles(84000);                     // Delay for 3500us (3500*24)
 }
 
 /*---------------------------------------------------------------------------*/
