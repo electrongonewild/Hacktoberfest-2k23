@@ -20,4 +20,4 @@ https://hacktoberfest.digitalocean.com
 - Make changes to forked repository 
 - After confirming the changes contribute by making a pull request
 - And wait for you Pull Request to be accepted
-- That's It! Follow these steps and make your Pull request(PR).
+- That's It! Follow these steps and make your Pull Request (PR).
