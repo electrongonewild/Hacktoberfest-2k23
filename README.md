@@ -1,5 +1,4 @@
-# Playing-with-STM32MP157
-
+# Hacktoberfest 2021
 
 
 ### Our Valuable Contributors :
