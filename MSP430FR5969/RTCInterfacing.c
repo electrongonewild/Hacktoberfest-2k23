@@ -1,11 +1,11 @@
 //#########################################################################
 // Code to interface MSP430FR5969 with RTC 
 //#########################################################################
-//  In this code MSP430FR5969 transmits data to 0x50 slave address. In this 
-//  case RTC.
+//  In this code MSP430FR5969 transmits data to 0x68 slave address. In this 
+//  case slave is RTC.
 //
 //                                /|\  /|\
-//                		          10k  10k (Pull-up resistors)    
+//                		  10k  10k (Pull-up resistors)    
 //                MSP430FR5969     |    |         RTC
 //             -----------------   |    |   -----------------
 //            |     P1.6/UCB0SDA|<-|----+->|SDA	             |
@@ -61,20 +61,20 @@ char Date[] ="00/00/00";
 int main(void)
 {
 	ConfigWDT();									// Configure Watchdog Timer
-    configureClocks();								// Configure Clocks
-	InitI2C();										// Initialize I2C 
+        configureClocks();								// Configure Clocks
+	InitI2C();									// Initialize I2C 
 
 	Address = 9;									// Address value to write on EEPROM
 
-	setRTCTime(12,22,0);            				// Write time in RTC Address
+	setRTCTime(12,22,0);            				                // Write time in RTC Address
 	Delay_ms(1000);
-	setRTCDate(07,10,21);                			// Write date in RTC Address 
-    Delay_ms(1000);
-    while(1)
-    {
-        readDateTimeRTC();                          // Read date and time from RTC  
+	setRTCDate(07,10,21);                			                        // Write date in RTC Address 
         Delay_ms(1000);
-    }
+        while(1)
+       {
+       		readDateTimeRTC();                          				// Read date and time from RTC  
+       	        Delay_ms(1000);
+       }
 }
 
 void ConfigWDT()
@@ -88,12 +88,12 @@ void configureClocks()
     // operation beyond 8MHz _before_ configuring the clock system.
     FRCTL0 = FRCTLPW | NWAITS_1;
     // Clock System Setup
-    CSCTL0_H = CSKEY >> 8;                   		      // Unlock CS registers
+    CSCTL0_H = CSKEY >> 8;                   		      	  // Unlock CS registers
     CSCTL1 = DCORSEL | DCOFSEL_6;             			  // Set DCO to 24MHz
-    CSCTL2 = SELA__VLOCLK | SELS__DCOCLK | SELM__DCOCLK;  // Set SMCLK = MCLK = DCO
+    CSCTL2 = SELA__VLOCLK | SELS__DCOCLK | SELM__DCOCLK;          // Set SMCLK = MCLK = DCO
                                               			  // ACLK = VLOCLK
     CSCTL3 = DIVA__1 | DIVS__1 | DIVM__1;     			  // Set all dividers to 1
-    CSCTL0_H = 0;                            		      // Lock CS registers
+    CSCTL0_H = 0;                            		          // Lock CS registers
 }
 
 
