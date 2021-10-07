@@ -1,12 +1,11 @@
 //#########################################################################
 // Code to interface MSP430FR5969 with EEPROM 
-
 //#########################################################################
 //  In this code MSP430FR5969 transmits data to 0x50 slave address. In this 
 //  case EEPROM.
 //
 //                                /|\  /|\
-//                		          10k  10k (Pull-up resistors)    
+//                		  10k  10k (Pull-up resistors)    
 //                MSP430FR5969     |    |         EEPROM
 //             -----------------   |    |   -----------------
 //            |     P1.6/UCB0SDA|<-|----+->|SDA	             |
@@ -41,14 +40,14 @@ int read_val;
 int main(void)
 {
 	ConfigWDT();									//Configure Watchdog Timer
-    configureClocks();								//Configure Clocks
-	InitI2C();										//Initialize I2C 
+        configureClocks();                						//Configure Clocks
+	InitI2C();									//Initialize I2C 
 
 	Address = 9;									//Address value to write on EEPROM
 
-	EEPROM_WriteByte(Address,'B');					//Write char on EEPROM Address
+	EEPROM_WriteByte(Address,'B');							//Write char on EEPROM Address
 	Delay_ms(1000);
-	read_val = EEPROM_ReadByte(Address);			//Read value from address to verify 
+	read_val = EEPROM_ReadByte(Address);						//Read value from address to verify 
 
 }
 
@@ -67,12 +66,12 @@ void configureClocks()
     FRCTL0 = FRCTLPW | NWAITS_1;
 
     // Clock System Setup
-    CSCTL0_H = CSKEY >> 8;                   		      // Unlock CS registers
+    CSCTL0_H = CSKEY >> 8;                   		          // Unlock CS registers
     CSCTL1 = DCORSEL | DCOFSEL_6;             			  // Set DCO to 24MHz
-    CSCTL2 = SELA__VLOCLK | SELS__DCOCLK | SELM__DCOCLK;  // Set SMCLK = MCLK = DCO
+    CSCTL2 = SELA__VLOCLK | SELS__DCOCLK | SELM__DCOCLK;          // Set SMCLK = MCLK = DCO
                                               			  // ACLK = VLOCLK
     CSCTL3 = DIVA__1 | DIVS__1 | DIVM__1;     			  // Set all dividers to 1
-    CSCTL0_H = 0;                            		      // Lock CS registers
+    CSCTL0_H = 0;                            		          // Lock CS registers
 }
 
 
@@ -107,30 +106,25 @@ void EEPROM_WriteByte(int address, int dataWrite)
 
     unsigned char adr_hi;
     unsigned char adr_lo;
-
+	
     adr_hi = address >> 8;                   // calculate high byte
     adr_lo = address & 0xFF;                 // and low byte of address
-
+	
     while(UCB0STAT & UCBBUSY);
     I2CWriteInit();
-
     UCB0CTLW0 |= UCTXSTT;                     // START condition.
     while (UCB0CTLW0 & UCTXSTT);
-
     UCB0TXBUF = adr_hi;
     while(!(UCB0IFG & UCTXIFG0));
-
     UCB0TXBUF = adr_lo;
     while(!(UCB0IFG & UCTXIFG0));
-
     UCB0TXBUF = dataWrite;
     while(!(UCB0IFG & UCTXIFG0));
-
     UCB0CTLW0 |= UCTXSTP;
     while(UCB0CTLW0 & UCTXSTP);                 // wait for stop
-
     UCB0STATW &= ~UCBBUSY;
-    __delay_cycles(84000);                      //Delay for 3500us (3500*24)
+	
+    __delay_cycles(84000);                      // Delay for 3500us (3500*24)
 }
 
 /*---------------------------------------------------------------------------*/
