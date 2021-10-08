@@ -11,7 +11,7 @@ Hacktoberfest is a month-long celebration of open source software run by Digital
 - Donate directly to open source projects
 # What can you contribute?
 There is always something to contribute to a project whether you are a beginner or pro. In this project, you can add about interfacing different devices with microcontrollers/processors or maybe getting started with some electronic stuff. Or maybe you modify the documentation for same.
-- Add your name and github ID to Contributors.md
+
 - For different controller/module create a different folder 
 - Make sure to add circuit/connection diagram with your code
 - Always first verify your code before making a Pull Request
@@ -24,3 +24,9 @@ https://hacktoberfest.digitalocean.com
 - After confirming the changes contribute by making a pull request
 - And wait for you Pull Request to be accepted
 - That's It! Follow these steps and make your Pull Request (PR).
+
+# Eligibilty Criteria
+- Same interfacing solution will not be accepted
+- Star and fork the repository
+- Must add your name and github username to Contributors.md after completing your task
+
