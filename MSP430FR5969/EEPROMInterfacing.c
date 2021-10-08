@@ -51,7 +51,6 @@ int main(void)
 	EEPROM_WriteByte(Address,'B');							// Write char on EEPROM Address
 	Delay_ms(1000);
 	read_val = EEPROM_ReadByte(Address);						// Read value from address to verify 
-
 }
 
 void ConfigWDT()
