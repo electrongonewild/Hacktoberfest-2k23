@@ -1,8 +1,11 @@
 //#########################################################################
 // Code to interface MSP430FR5969 with RTC 
+// Devices : MSP430FR5969
+// Author : Shikha Singhal
+// Code : Interfacing for RTC
 //#########################################################################
 //  In this code MSP430FR5969 transmits data to 0x68 slave address. In this 
-//  case slave is RTC.
+//  case I2C slave is RTC.
 //
 //                                /|\  /|\
 //                		  10k  10k (Pull-up resistors)    
@@ -72,8 +75,8 @@ int main(void)
         Delay_ms(1000);
         while(1)
        {
-       		readDateTimeRTC();                          				// Read date and time from RTC  
-       	        Delay_ms(1000);
+       	    readDateTimeRTC();                          				// Read date and time from RTC  
+       	    Delay_ms(1000);
        }
 }
 
@@ -179,6 +182,7 @@ void RTC_WriteByte(int address, int dataWrite)
     UCB0CTLW0 |= UCTXSTP;
     while(UCB0CTLW0 & UCTXSTP);             // wait for stop
     UCB0STATW &= ~UCBBUSY;
+	
     __delay_cycles(2400);                   //Delay for 100us (24*100)
 
 }
@@ -200,7 +204,9 @@ int RTC_ReadByte(int address)
     while(!(UCB0IFG & UCRXIFG0));
     data = UCB0RXBUF;
     while(UCB0CTLW0 & UCTXSTP);
+	
     __delay_cycles(1200);                   // Delay for 50us(24*50)
+	
     return data;
 }
 
@@ -216,7 +222,7 @@ int Binary2BCD(int a)
    t2 = 0xF0 & t2;
    t1 = t1 | t2;
    return t1;
-}  // function end
+}  
 
 int BCD2Binary(int a)
 {
@@ -228,19 +234,19 @@ int BCD2Binary(int a)
    t = 0x0F & t;
    r = t*10 + r;
    return r;
-
-} // function end
+} 
 
 char BCD2UpperCh( char bcd)
 {
   return ((bcd >> 4) + '0');
-}   // function end
+}   
 
 
 char BCD2LowerCh( char bcd)
 {
   return ((bcd & 0x0F) + '0');
-} // function end
+} 
+
 /*---------------------------------------------------------------------------*/
 // Description:
 //   Initialization of the I2C Module for Write operation.
