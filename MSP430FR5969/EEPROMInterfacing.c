@@ -1,8 +1,11 @@
 //#########################################################################
 // Code to interface MSP430FR5969 with EEPROM 
+// Devices : MSP430FR5969
+// Author : Shikha Singhal
+// Code : Interfacing for EEPROM
 //#########################################################################
 //  In this code MSP430FR5969 transmits data to 0x50 slave address. In this 
-//  case slave is EEPROM.
+//  case I2C slave is EEPROM.
 //
 //                                /|\  /|\
 //                		  10k  10k (Pull-up resistors)    
@@ -24,7 +27,7 @@
 #include <stdio.h>
 #include <math.h>
 
-#define     EEPROMAddress    0x50							// set EEPROM address 
+#define     EEPROMAddress    0x50							// set I2C slave EEPROM address 
 
 void ConfigWDT(void);
 void Delay_ms(unsigned int);
@@ -53,10 +56,7 @@ int main(void)
 
 void ConfigWDT()
 {
-//---------------------------------------------------------------------
-//--- Configure Watchdog Timer
-//---------------------------------------------------------------------
-    WDTCTL = WDTPW | WDTHOLD;
+    WDTCTL = WDTPW | WDTHOLD;					 // Configure Watchdog Timer
 }
 
 void configureClocks()
@@ -101,18 +101,18 @@ void InitI2C()
 /*----------------------------------------------------------------------------*/
 void EEPROM_WriteByte(int address, int dataWrite)
 {
-    UCB0I2CSA = EEPROMAddress;              // set slave address
+    UCB0I2CSA = EEPROMAddress;              // Set slave address
     UCB0CTLW0 |= UCMSB;
 
     unsigned char adr_hi;
     unsigned char adr_lo;
 	
-    adr_hi = address >> 8;                   // calculate high byte
-    adr_lo = address & 0xFF;                 // and low byte of address
+    adr_hi = address >> 8;                  // Calculate high byte
+    adr_lo = address & 0xFF;                // and low byte of address
 	
     while(UCB0STAT & UCBBUSY);
     I2CWriteInit();
-    UCB0CTLW0 |= UCTXSTT;                     // START condition.
+    UCB0CTLW0 |= UCTXSTT;                    // START condition.
     while (UCB0CTLW0 & UCTXSTT);
     UCB0TXBUF = adr_hi;
     while(!(UCB0IFG & UCTXIFG0));
@@ -121,10 +121,10 @@ void EEPROM_WriteByte(int address, int dataWrite)
     UCB0TXBUF = dataWrite;
     while(!(UCB0IFG & UCTXIFG0));
     UCB0CTLW0 |= UCTXSTP;
-    while(UCB0CTLW0 & UCTXSTP);                // wait for stop
+    while(UCB0CTLW0 & UCTXSTP);               // wait for stop
     UCB0STATW &= ~UCBBUSY;
 	
-    __delay_cycles(84000);                     // Delay for 3500us (3500*24)
+    __delay_cycles(84000);                    // Delay for 3500us (3500*24)
 }
 
 /*---------------------------------------------------------------------------*/
