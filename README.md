@@ -1,4 +1,7 @@
 # Hacktoberfest 2021
+
+![Hacktoberfest](hactoberfest.png)
+
 Hacktoberfest is a month-long celebration of open source software run by DigitalOcean. During the month of October, we invite you to join open-source software enthusiasts, beginners, and the developer community by contributing to open-source projects. You can do this in a variety of ways:
 
 - Prepare and share your project for collaboration
