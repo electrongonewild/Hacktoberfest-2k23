@@ -2,7 +2,7 @@
 // Code to interface MSP430FR5969 with RTC 
 // Devices : MSP430FR5969
 // Author : Shikha Singhal
-// Code : Interfacing for RTC
+// Code : Interfacing with RTC
 //#########################################################################
 //  In this code MSP430FR5969 transmits data to 0x68 slave address. In this 
 //  case I2C slave is RTC.
