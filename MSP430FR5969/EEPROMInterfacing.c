@@ -2,7 +2,8 @@
 // Code to interface MSP430FR5969 with EEPROM 
 // Devices : MSP430FR5969
 // Author : Shikha Singhal
-// Code : Interfacing with EEPROM
+// Code : Interfacing with EEPROM. 
+// This is a rewrite of the original example code supplied by TI 
 //#########################################################################
 //  In this code MSP430FR5969 transmits data to 0x50 slave address. In this 
 //  case I2C slave is EEPROM.
