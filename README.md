@@ -1,4 +1,4 @@
-# Hacktoberfest 2021
+# Hacktoberfest 2k21
 
 ![Hacktoberfest](hactoberfest.png)
 
