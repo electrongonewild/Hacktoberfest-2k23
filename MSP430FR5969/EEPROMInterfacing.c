@@ -38,8 +38,8 @@ int EEPROM_ReadByte( int);
 void I2CWriteInit(void);
 void I2CReadInit(void);
 
-int Address, Data, address;
-int read_val;
+int Address, Data, address; //variable declaration
+int read_val; 		//variable declaration
 
 int main(void)
 {
