@@ -1,4 +1,4 @@
-# Hacktoberfest 2021
+# Hacktoberfest 2022
 
 ![Hacktoberfest](hactoberfest.png)
 
