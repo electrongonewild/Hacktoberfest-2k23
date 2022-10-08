@@ -17,7 +17,7 @@ There is always something to contribute to a project whether you are a beginner 
 - Always first verify your code before making a Pull Request
 - Add proper comments in the code
 # How can you Contribute
-To contribute in Hacktoberfest2021 follow the steps and checkout the link below:\
+To contribute in Hacktoberfest2022 follow the steps and checkout the link below:\
 https://hacktoberfest.digitalocean.com 
 - Fork this repository
 - Make changes to forked repository 
