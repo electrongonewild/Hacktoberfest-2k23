@@ -30,3 +30,7 @@ https://hacktoberfest.digitalocean.com
 - Star and fork the repository
 - Must add your name and github username to Contributors.md after completing your task
 
+## Contributors
+<a href="https://github.com/electrongonewild/Hacktoberfest-2022 /graphs/contributors">
+  <img src="https://contributors-img.web.app/image?repo=electrongonewild/Hacktoberfest-2022" />
+</a>
