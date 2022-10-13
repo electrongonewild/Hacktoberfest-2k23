@@ -28,9 +28,9 @@ https://hacktoberfest.digitalocean.com
 ## For making PR your Local Machine
 - You can get your own fork/copy of HacktoberFest-2022 by using the Fork button.
 - Clone or (download) it on your local machine using:
-  ```
-  $ git clone https://github.com/Your_Username/Hacktoberfest-2022.git 
-  ```
+```
+$ git clone https://github.com/Your_Username/Hacktoberfest-2022.git 
+```
 - Make Hacktoberfest-2022 as your current directory:
  ```
  $ cd Hacktoberfest-2022
