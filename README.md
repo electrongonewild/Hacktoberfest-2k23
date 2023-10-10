@@ -33,9 +33,9 @@ https://hacktoberfest.digitalocean.com
 ```
 $ git clone https://github.com/Your_Username/Hacktoberfest-2022.git 
 ```
-- Make Hacktoberfest-2023 as your current directory:
+- Make Hacktoberfest-2k23 as your current directory:
  ```
- $ cd Hacktoberfest-2023
+ $ cd Hacktoberfest-2k23
  ```
 - Create a new branch:
  ```
