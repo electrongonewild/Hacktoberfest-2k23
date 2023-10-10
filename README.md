@@ -1,4 +1,4 @@
-# Hacktoberfest 2022
+# Hacktoberfest 2023
 
 ![Hacktoberfest](hacktoberfest.png)
 
