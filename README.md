@@ -10,7 +10,7 @@ Hacktoberfest is a month-long celebration of open source software run by Digital
 - Mentor others
 - Donate directly to open source projects
 # Rules
-To qualify for the official limited edition Hacktoberfest shirt, you must register on hacktoberfest offical page (https://hacktoberfest.com) and make four Pull Requests (PRs) between October 1-31, 2022. Pull requests can be made to any public repository on GitHub, not only the ones with issues labeled Hacktoberfest. This year, the first 40,000 participants who complete the challenge will earn a T-shirt.
+To qualify for the official limited edition Hacktoberfest shirt, you must register on hacktoberfest offical page (https://hacktoberfest.com) and make four Pull Requests (PRs) between October 1-31, 2023. Pull requests can be made to any public repository on GitHub, not only the ones with issues labeled Hacktoberfest. This year, the first 40,000 participants who complete the challenge will earn a T-shirt.
 # What can you contribute?
 There is always something to contribute to a project whether you are a beginner or pro. In this project, you can add about interfacing different devices with microcontrollers/processors or maybe getting started with some electronic stuff. Or maybe you modify the documentation for same.
 
@@ -19,7 +19,7 @@ There is always something to contribute to a project whether you are a beginner 
 - Always first verify your code before making a Pull Request
 - Add proper comments in the code
 # How can you Contribute
-To contribute in Hacktoberfest2022 follow the steps and checkout the link below:\
+To contribute in Hacktoberfest2023 follow the steps and checkout the link below:\
 https://hacktoberfest.digitalocean.com 
 ## For making PR using github
 - Fork this repository
