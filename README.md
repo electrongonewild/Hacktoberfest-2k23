@@ -31,7 +31,7 @@ https://hacktoberfest.digitalocean.com
 - You can get your own fork/copy of HacktoberFest-2022 by using the Fork button.
 - Clone or (download) it on your local machine using:
 ```
-$ git clone https://github.com/Your_Username/Hacktoberfest-2022.git 
+$ git clone https://github.com/Your_Username/Hacktoberfest-2k23.git 
 ```
 - Make Hacktoberfest-2k23 as your current directory:
  ```
