@@ -1,7 +1,7 @@
 /*
  * Device Tested on : TMS320F28379D Launchpad
  * Code   : LCD Functions File in 4 Bit Mode
- *
+ * Author: Shikha Singhal 
  *
  * To use in main file : Write the following lines and debug the code on launchpad
  *       Lcd_Cmd(0x01);                      // Clear LCD Display
@@ -38,29 +38,22 @@
 #define d5OFF          GpioDataRegs.GPBCLEAR.bit.GPIO59
 #define d4OFF          GpioDataRegs.GPDCLEAR.bit.GPIO124
 
-void Delay_ms(Uint16 val)
-{
-    Uint16 idelay;
-    Uint16 factor;
-    factor = val*10;
-    for (idelay = 0; idelay < factor; idelay++)
-    {
-       DelayUs(100);
+void Delay_ms(Uint16 value){
+    Uint16 i;
+    for(i = 0; i < value; i++){
+       DelayUs(1000);
     }
 }
 
-Uint16 stringLen(char* str)
-{
+Uint16 stringLen(char* str){
     int length = 0;
-    while (str[length] != '\0')
-    {
+    while(str[length] != '\0'){
         length += 1;
     }
     return length;
 }
 
-void LcdInit(void)
-{
+void LcdInit(void){
     Delay_ms(15);           // LCD Power on delay
     Lcd_Cmd(0x02);          // Initialization of LCD
     Lcd_Cmd(0x28);          // Initialize 5*8 matrix in (4-bit mode)
@@ -69,27 +62,30 @@ void LcdInit(void)
     Lcd_Cmd(0x06);          // Increment cursor (shift cursor to right)
 }
 
-void Lcd_Cmd(unsigned char value)
-{
+void Lcd_Cmd(unsigned char value){
     // Upper Nibble
-    if ((value & 0x10) == 0)
+    if((value & 0x10) == 0)
       d4OFF = 1;
     else
       d4ON = 1;
-    if ((value & 0x20) == 0)
+
+    if((value & 0x20) == 0)
       d5OFF = 1;
     else
       d5ON = 1;
-    if ((value & 0x40) == 0)
+
+    if((value & 0x40) == 0)
       d6OFF = 1;
     else
       d6ON = 1;
-    if ((value & 0x80) == 0)
+
+    if((value & 0x80) == 0)
       d7OFF = 1;
     else
       d7ON = 1;
 
-    rsPinOFF = 1;       // Command Register is selected RS = 0
+    // Command Register is selected RS = 0
+    rsPinOFF = 1;     
 
     // High-to-low pulse on Enable pin to latch data
     enablePinON = 1;
@@ -98,19 +94,22 @@ void Lcd_Cmd(unsigned char value)
     Delay_ms(1);
 
     // Lower Nibble
-    if ((value & 0x01) == 0)
+    if((value & 0x01) == 0)
        d4OFF = 1;
     else
        d4ON = 1;
-    if ((value & 0x02) == 0)
+
+    if((value & 0x02) == 0)
       d5OFF = 1;
     else
       d5ON = 1;
-    if ((value & 0x04) == 0)
+
+    if((value & 0x04) == 0)
        d6OFF = 1;
     else
        d6ON = 1;
-    if ((value & 0x08) == 0)
+
+    if((value & 0x08) == 0)
         d7OFF = 1;
     else
         d7ON = 1;
@@ -121,27 +120,31 @@ void Lcd_Cmd(unsigned char value)
     enablePinOFF = 1;
     Delay_ms(15);
 }
-void LcdData(unsigned char value)
-{
+
+void LcdData(unsigned char value){
     // Upper Nibble
-    if ((value & 0x10) == 0)
+    if((value & 0x10) == 0)
       d4OFF = 1;
     else
       d4ON = 1;
-    if ((value & 0x20) == 0)
+
+    if((value & 0x20) == 0)
       d5OFF = 1;
     else
       d5ON = 1;
-    if ((value & 0x40) == 0)
+
+    if((value & 0x40) == 0)
       d6OFF = 1;
     else
       d6ON = 1;
-    if ((value & 0x80) == 0)
+
+    if((value & 0x80) == 0)
       d7OFF = 1;
     else
       d7ON = 1;
 
-    rsPinON = 1;        // Data Register is selected RS = 1
+    // Data Register is selected RS = 1
+    rsPinON = 1;        
 
     // High-to-low pulse on Enable pin to latch data
     enablePinON = 1;
@@ -150,20 +153,22 @@ void LcdData(unsigned char value)
     Delay_ms(1);
 
     //Lower Nibble
-    if ((value & 0x01) == 0)
+    if((value & 0x01) == 0)
        d4OFF = 1;
     else
        d4ON = 1;
 
-    if ((value & 0x02) == 0)
+    if((value & 0x02) == 0)
       d5OFF = 1;
     else
       d5ON = 1;
-    if ((value & 0x04) == 0)
+
+    if((value & 0x04) == 0)
        d6OFF = 1;
     else
        d6ON = 1;
-    if ((value & 0x08) == 0)
+
+    if((value & 0x08) == 0)
         d7OFF = 1;
     else
         d7ON = 1;
@@ -174,12 +179,12 @@ void LcdData(unsigned char value)
     enablePinOFF = 1;
     Delay_ms(3);
 }
-void Lcd_out(Uint16 rowNumber, Uint16 colNumber, char* dataDisplay)
-{
+
+void Lcd_out(Uint16 rowNumber, Uint16 colNumber, char* dataDisplay){
     Uint16 j,len;
     unsigned char Display , rowCount;
     len = stringLen(dataDisplay);
-    if (rowNumber == 1){
+    if(rowNumber == 1){
         rowCount = 127 + colNumber;
         Lcd_Cmd(rowCount);
     }
@@ -187,7 +192,8 @@ void Lcd_out(Uint16 rowNumber, Uint16 colNumber, char* dataDisplay)
         rowCount = 191 + colNumber;
         Lcd_Cmd(rowCount);
     }
-    for (j= 0; j < len ;j++){
+
+    for(j= 0; j < len ;j++){
        Display = dataDisplay[j];
        LcdData(Display);
     }
